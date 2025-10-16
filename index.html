@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etnomatematika Semarang - Belajar Statistika</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #F4A460 100%);
+            min-height: 100vh;
+            color: #2F1B14;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: linear-gradient(135deg, #CD853F 0%, #DEB887 100%);
+            color: #2F1B14;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(205, 133, 63, 0.3);
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background: linear-gradient(135deg, #B8860B 0%, #DAA520 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(184, 134, 11, 0.4);
+        }
+
+        .content-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #8B0000;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px solid #DC143C;
+            padding-bottom: 10px;
+        }
+
+        .cultural-context {
+            background: linear-gradient(135deg, #FFF8DC 0%, #F5DEB3 100%);
+            border-left: 5px solid #CD853F;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .cultural-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+        .example-box {
+            background: linear-gradient(135deg, #E6F3FF 0%, #CCE7FF 100%);
+            border: 2px solid #4682B4;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .formula-box {
+            background: linear-gradient(135deg, #F0F8E6 0%, #E6F3D6 100%);
+            border: 2px solid #228B22;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #006400;
+            margin: 10px 0;
+        }
+
+        .interactive-calculator {
+            background: linear-gradient(135deg, #FFE4E1 0%, #FFC0CB 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .input-group {
+            margin: 15px 0;
+        }
+
+        .input-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #8B0000;
+        }
+
+        .data-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #CD853F;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            box-shadow: 0 5px 15px rgba(220, 20, 60, 0.3);
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 20, 60, 0.4);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #F0FFF0 0%, #E0FFE0 100%);
+            border: 2px solid #32CD32;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .result-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #006400;
+            margin-bottom: 10px;
+        }
+
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #228B22;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .data-visualization {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .data-bar {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .bar-label {
+            width: 100px;
+            font-weight: bold;
+            color: #8B0000;
+        }
+
+        .bar-fill {
+            height: 30px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-left: 10px;
+            min-width: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #FFF5EE 0%, #FFEEE6 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .quiz-question {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8B4513;
+            margin-bottom: 15px;
+        }
+
+        .quiz-options {
+            display: grid;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 2px solid #CD853F;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-option:hover {
+            background: #F5DEB3;
+            transform: translateX(5px);
+        }
+
+        .quiz-option.correct {
+            background: #90EE90;
+            border-color: #32CD32;
+        }
+
+        .quiz-option.incorrect {
+            background: #FFB6C1;
+            border-color: #DC143C;
+        }
+
+        .score-panel {
+            background: linear-gradient(135deg, #E6E6FA 0%, #D8BFD8 100%);
+            border: 2px solid #9370DB;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .score-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #4B0082;
+            margin-bottom: 15px;
+        }
+
+        .score-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .score-label {
+            font-weight: bold;
+            color: #2F1B14;
+        }
+
+        .score-value {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .score-correct {
+            color: #228B22;
+        }
+
+        .score-incorrect {
+            color: #DC143C;
+        }
+
+        .score-percentage {
+            color: #4B0082;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #E0E0E0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #FF6347 0%, #DC143C 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 99, 71, 0.3);
+        }
+
+        .achievement-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #8B4513;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 5px;
+            box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .quiz-counter {
+            background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+            border: 2px solid #4682B4;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            text-align: center;
+            font-weight: bold;
+            color: #2F4F4F;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 200px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <h1 class="title">🏛️ Etnomatematika Semarang</h1>
+            <p class="subtitle">Belajar Mean, Median, dan Modus melalui Kearifan Lokal Kota Semarang</p>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="showSection('mean')">📊 Mean (Rata-rata)</button>
+            <button class="tab-btn" onclick="showSection('median')">📈 Median (Nilai Tengah)</button>
+            <button class="tab-btn" onclick="showSection('modus')">📋 Modus (Nilai Sering)</button>
+            <button class="tab-btn" onclick="showSection('kalkulator')">🧮 Kalkulator</button>
+            <button class="tab-btn" onclick="showSection('rekapan')">📋 Rekapan Nilai</button>
+        </nav>
+
+        <!-- Section Mean -->
+        <section id="mean" class="content-section active">
+            <h2 class="section-title">📊 Mean (Rata-rata) - Gudeg Yu Djum</h2>
+            
+            <div class="cultural-context">
+                <span class="cultural-icon">🍛</span>
+                <strong>Konteks Budaya:</strong> Warung Gudeg Yu Djum adalah ikon kuliner Semarang. Mari kita hitung rata-rata penjualan gudeg per hari menggunakan konsep mean!
+            </div>
+
+            <div class="formula-box">
+                <h3>Rumus Mean:</h3>
+                <div class="formula">Mean = (Jumlah Semua Data) ÷ (Banyak Data)</div>
+                <div class="formula">x̄ = (x₁ + x₂ + x₃ + ... + xₙ) ÷ n</div>
+            </div>
+
+            <div class="example-box">
+                <h3>🍛 Contoh: Penjualan Gudeg Yu Djum (porsi per hari)</h3>
+                <p><strong>Data penjualan selama 7 hari:</strong></p>
+                <p>Senin: 85 porsi, Selasa: 92 porsi, Rabu: 78 porsi, Kamis: 95 porsi, Jumat: 110 porsi, Sabtu: 125 porsi, Minggu: 105 porsi</p>
+                
+                <div class="data-visualization">
+                    <div class="data-bar">
+                        <div class="bar-label">Senin</div>
+                        <div class="bar-fill" style="width: 170px;">85 porsi</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Selasa</div>
+                        <div class="bar-fill" style="width: 184px;">92 porsi</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Rabu</div>
+                        <div class="bar-fill" style="width: 156px;">78 porsi</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Kamis</div>
+                        <div class="bar-fill" style="width: 190px;">95 porsi</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Jumat</div>
+                        <div class="bar-fill" style="width: 220px;">110 porsi</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Sabtu</div>
+                        <div class="bar-fill" style="width: 250px;">125 porsi</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Minggu</div>
+                        <div class="bar-fill" style="width: 210px;">105 porsi</div>
+                    </div>
+                </div>
+
+                <p><strong>Perhitungan:</strong></p>
+                <p>Mean = (85 + 92 + 78 + 95 + 110 + 125 + 105) ÷ 7</p>
+                <p>Mean = 690 ÷ 7 = <strong>98.57 porsi per hari</strong></p>
+            </div>
+
+            <div class="score-panel">
+                <div class="score-title">📊 Skor Mean (Rata-rata)</div>
+                <div class="quiz-counter" id="meanCounter">Soal dijawab: 0 dari 5</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="meanProgress" style="width: 0%;">0%</div>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Jawaban Benar:</span>
+                    <span class="score-value score-correct" id="meanCorrect">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Jawaban Salah:</span>
+                    <span class="score-value score-incorrect" id="meanIncorrect">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Persentase:</span>
+                    <span class="score-value score-percentage" id="meanPercentage">0%</span>
+                </div>
+                <button class="reset-btn" onclick="resetQuizSection('mean')">🔄 Reset Skor</button>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🤔 Soal 1: Jika Warung Tahu Gimbal menjual 45, 52, 38, 61, dan 49 porsi dalam 5 hari, berapa rata-rata penjualannya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 1)">A. 47 porsi</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'mean', 1)">B. 49 porsi</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 1)">C. 51 porsi</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 1)">D. 53 porsi</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🍜 Soal 2: Warung Soto Bangkong mencatat penjualan: 32, 28, 35, 40, 30, 33, 37 mangkuk per hari. Berapa rata-rata penjualan per hari?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 2)">A. 32 mangkuk</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 2)">B. 34 mangkuk</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'mean', 2)">C. 33.6 mangkuk</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 2)">D. 35 mangkuk</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🥘 Soal 3: Penjual Nasi Pecel di Pasar Johar meraup keuntungan: Rp 150.000, Rp 200.000, Rp 175.000, Rp 225.000, Rp 180.000 dalam 5 hari. Berapa rata-rata keuntungan per hari?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 3)">A. Rp 180.000</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'mean', 3)">B. Rp 186.000</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 3)">C. Rp 190.000</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 3)">D. Rp 195.000</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🍲 Soal 4: Nilai ujian matematika siswa SMA di Semarang: 85, 90, 78, 92, 88, 76, 94, 82. Berapa nilai rata-rata kelas?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 4)">A. 84.5</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'mean', 4)">B. 85.6</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 4)">C. 86.2</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 4)">D. 87.0</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🏪 Soal 5: Toko oleh-oleh Bandeng Presto mencatat penjualan: 15, 22, 18, 25, 20, 16, 24, 19, 21, 23 kotak per hari. Berapa rata-rata penjualan?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 5)">A. 19.5 kotak</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'mean', 5)">B. 20.3 kotak</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 5)">C. 21.0 kotak</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'mean', 5)">D. 21.8 kotak</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Median -->
+        <section id="median" class="content-section">
+            <h2 class="section-title">📈 Median (Nilai Tengah) - Batik Semarang</h2>
+            
+            <div class="cultural-context">
+                <span class="cultural-icon">🎨</span>
+                <strong>Konteks Budaya:</strong> Batik Semarang memiliki motif khas seperti Tugu Muda dan Asem Arang. Mari kita cari nilai tengah dari harga batik di Pasar Johar!
+            </div>
+
+            <div class="formula-box">
+                <h3>Cara Mencari Median:</h3>
+                <div class="formula">1. Urutkan data dari terkecil ke terbesar</div>
+                <div class="formula">2. Jika n ganjil: Median = data ke-(n+1)/2</div>
+                <div class="formula">3. Jika n genap: Median = (data ke-n/2 + data ke-(n/2+1))/2</div>
+            </div>
+
+            <div class="example-box">
+                <h3>🎨 Contoh: Harga Batik Semarang di Pasar Johar (dalam ribuan rupiah)</h3>
+                <p><strong>Data harga:</strong> 150, 200, 175, 300, 225, 180, 250, 190, 275</p>
+                
+                <p><strong>Langkah 1 - Urutkan data:</strong></p>
+                <p>150, 175, 180, 190, 200, 225, 250, 275, 300</p>
+                
+                <div class="data-visualization">
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 1</div>
+                        <div class="bar-fill" style="width: 150px;">150rb</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 2</div>
+                        <div class="bar-fill" style="width: 175px;">175rb</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 3</div>
+                        <div class="bar-fill" style="width: 180px;">180rb</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 4</div>
+                        <div class="bar-fill" style="width: 190px;">190rb</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 5</div>
+                        <div class="bar-fill" style="width: 200px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);">200rb ⭐</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 6</div>
+                        <div class="bar-fill" style="width: 225px;">225rb</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 7</div>
+                        <div class="bar-fill" style="width: 250px;">250rb</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 8</div>
+                        <div class="bar-fill" style="width: 275px;">275rb</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Posisi 9</div>
+                        <div class="bar-fill" style="width: 300px;">300rb</div>
+                    </div>
+                </div>
+
+                <p><strong>Langkah 2 - Cari posisi tengah:</strong></p>
+                <p>n = 9 (ganjil), posisi tengah = (9+1)/2 = 5</p>
+                <p>Median = data ke-5 = <strong>200 ribu rupiah</strong></p>
+            </div>
+
+            <div class="score-panel">
+                <div class="score-title">📈 Skor Median (Nilai Tengah)</div>
+                <div class="quiz-counter" id="medianCounter">Soal dijawab: 0 dari 6</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="medianProgress" style="width: 0%;">0%</div>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Jawaban Benar:</span>
+                    <span class="score-value score-correct" id="medianCorrect">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Jawaban Salah:</span>
+                    <span class="score-value score-incorrect" id="medianIncorrect">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Persentase:</span>
+                    <span class="score-value score-percentage" id="medianPercentage">0%</span>
+                </div>
+                <button class="reset-btn" onclick="resetQuizSection('median')">🔄 Reset Skor</button>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🤔 Soal 1: Harga kerupuk rambak di 6 toko: 15rb, 20rb, 12rb, 25rb, 18rb, 22rb. Berapa mediannya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 1)">A. 18 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'median', 1)">B. 19 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 1)">C. 20 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 1)">D. 21 ribu</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🎨 Soal 2: Harga kain batik di 7 toko: 120rb, 150rb, 100rb, 180rb, 130rb, 160rb, 140rb. Berapa nilai tengahnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 2)">A. 130 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'median', 2)">B. 140 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 2)">C. 150 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 2)">D. 160 ribu</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🚌 Soal 3: Waktu tempuh Trans Semarang (menit): 25, 30, 22, 35, 28, 32. Berapa median waktu tempuhnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 3)">A. 28 menit</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'median', 3)">B. 29 menit</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 3)">C. 30 menit</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 3)">D. 31 menit</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🏛️ Soal 4: Tinggi bangunan bersejarah di Semarang (meter): 15, 22, 18, 25, 20, 16, 24, 19, 21. Berapa mediannya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 4)">A. 19 meter</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'median', 4)">B. 20 meter</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 4)">C. 21 meter</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 4)">D. 22 meter</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🍤 Soal 5: Harga udang di Pasar Kobong per kg: 45rb, 50rb, 40rb, 55rb, 48rb, 52rb, 42rb, 47rb. Berapa median harganya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 5)">A. 46.5 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'median', 5)">B. 47.5 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 5)">C. 48.5 ribu</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 5)">D. 49.5 ribu</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">📚 Soal 6: Jumlah pengunjung Perpustakaan Daerah per hari: 85, 92, 78, 95, 88. Berapa mediannya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 6)">A. 85 orang</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'median', 6)">B. 88 orang</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 6)">C. 92 orang</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'median', 6)">D. 95 orang</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Modus -->
+        <section id="modus" class="content-section">
+            <h2 class="section-title">📋 Modus (Nilai Sering) - Angkutan Kota Semarang</h2>
+            
+            <div class="cultural-context">
+                <span class="cultural-icon">🚌</span>
+                <strong>Konteks Budaya:</strong> Trans Semarang adalah kebanggaan transportasi kota. Mari kita cari rute yang paling sering digunakan menggunakan konsep modus!
+            </div>
+
+            <div class="formula-box">
+                <h3>Pengertian Modus:</h3>
+                <div class="formula">Modus = Nilai yang paling sering muncul dalam data</div>
+                <div class="formula">Jika tidak ada yang berulang = Tidak ada modus</div>
+                <div class="formula">Jika ada beberapa nilai dengan frekuensi sama = Multimodus</div>
+            </div>
+
+            <div class="example-box">
+                <h3>🚌 Contoh: Jumlah Penumpang Trans Semarang per Jam</h3>
+                <p><strong>Data penumpang:</strong> 25, 30, 25, 35, 30, 25, 40, 30, 25, 35, 25</p>
+                
+                <div class="data-visualization">
+                    <h4>Frekuensi Kemunculan:</h4>
+                    <div class="data-bar">
+                        <div class="bar-label">25 orang</div>
+                        <div class="bar-fill" style="width: 250px; background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);">5 kali ⭐</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">30 orang</div>
+                        <div class="bar-fill" style="width: 150px;">3 kali</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">35 orang</div>
+                        <div class="bar-fill" style="width: 100px;">2 kali</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">40 orang</div>
+                        <div class="bar-fill" style="width: 50px;">1 kali</div>
+                    </div>
+                </div>
+
+                <p><strong>Analisis:</strong></p>
+                <p>• 25 penumpang muncul 5 kali (paling sering)</p>
+                <p>• 30 penumpang muncul 3 kali</p>
+                <p>• 35 penumpang muncul 2 kali</p>
+                <p>• 40 penumpang muncul 1 kali</p>
+                <p>Modus = <strong>25 penumpang per jam</strong></p>
+            </div>
+
+            <div class="score-panel">
+                <div class="score-title">📋 Skor Modus (Nilai Sering)</div>
+                <div class="quiz-counter" id="modusCounter">Soal dijawab: 0 dari 7</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="modusProgress" style="width: 0%;">0%</div>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Jawaban Benar:</span>
+                    <span class="score-value score-correct" id="modusCorrect">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Jawaban Salah:</span>
+                    <span class="score-value score-incorrect" id="modusIncorrect">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Persentase:</span>
+                    <span class="score-value score-percentage" id="modusPercentage">0%</span>
+                </div>
+                <button class="reset-btn" onclick="resetQuizSection('modus')">🔄 Reset Skor</button>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🤔 Soal 1: Jenis makanan favorit di Simpang Lima: Soto (8 orang), Nasi Gudeg (12 orang), Lumpia (12 orang), Tahu Gimbal (6 orang). Apa modusnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 1)">A. Soto</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'modus', 1)">B. Nasi Gudeg dan Lumpia</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 1)">C. Lumpia</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 1)">D. Tahu Gimbal</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🚌 Soal 2: Jumlah penumpang Trans Semarang per jam: 20, 25, 20, 30, 25, 20, 35, 25. Apa modusnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'modus', 2)">A. 20 dan 25 (multimodus)</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 2)">B. 20 saja</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 2)">C. 25 saja</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 2)">D. 30</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🎨 Soal 3: Warna batik yang paling diminati: Merah (15), Biru (22), Coklat (18), Biru (22), Hijau (12), Biru (22). Apa modusnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 3)">A. Merah</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'modus', 3)">B. Biru</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 3)">C. Coklat</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 3)">D. Hijau</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🏪 Soal 4: Ukuran sepatu yang terjual di Pasar Johar: 38, 39, 40, 39, 41, 38, 42, 39, 40, 39. Apa modusnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 4)">A. 38</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'modus', 4)">B. 39</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 4)">C. 40</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 4)">D. 41</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">📊 Soal 5: Nilai ujian siswa: 80, 85, 90, 85, 75, 90, 85, 95, 80, 85. Berapa modusnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 5)">A. 80</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'modus', 5)">B. 85</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 5)">C. 90</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 5)">D. 95</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🍜 Soal 6: Jenis soto favorit: Soto Ayam (18), Soto Daging (15), Soto Babat (12), Soto Ayam (18), Soto Kikil (10). Apa modusnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'modus', 6)">A. Soto Ayam</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 6)">B. Soto Daging</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 6)">C. Soto Babat</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 6)">D. Soto Kikil</div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <div class="quiz-question">🎯 Soal 7: Data berikut: 12, 15, 18, 20, 22, 25, 28. Apa modusnya?</div>
+                <div class="quiz-options">
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 7)">A. 12</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 7)">B. 20</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, false, 'modus', 7)">C. 25</div>
+                    <div class="quiz-option" onclick="checkAnswer(this, true, 'modus', 7)">D. Tidak ada modus</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Kalkulator -->
+        <section id="kalkulator" class="content-section">
+            <h2 class="section-title">🧮 Kalkulator Statistika Semarang</h2>
+            
+            <div class="cultural-context">
+                <span class="cultural-icon">🧮</span>
+                <strong>Praktik Langsung:</strong> Masukkan data Anda sendiri dan hitung mean, median, dan modus secara otomatis!
+            </div>
+
+            <div class="interactive-calculator">
+                <div class="input-group">
+                    <label for="dataInput" class="input-label">Masukkan Data (pisahkan dengan koma):</label>
+                    <input type="text" id="dataInput" class="data-input" placeholder="Contoh: 10, 15, 20, 15, 25, 30, 15" />
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="calculate-btn" onclick="calculateAll()">🔢 Hitung Semua</button>
+                    <button class="calculate-btn" onclick="clearResults()">🗑️ Bersihkan</button>
+                </div>
+
+                <div id="calculatorResults" class="result-box">
+                    <div class="result-title">📊 Hasil Perhitungan:</div>
+                    <div id="meanResult" class="result-value"></div>
+                    <div id="medianResult" class="result-value"></div>
+                    <div id="modusResult" class="result-value"></div>
+                    <div id="dataVisualization"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Rekapan Nilai -->
+        <section id="rekapan" class="content-section">
+            <h2 class="section-title">📋 Rekapan Nilai Keseluruhan</h2>
+            
+            <div class="cultural-context">
+                <span class="cultural-icon">🏆</span>
+                <strong>Laporan Prestasi:</strong> Lihat pencapaian Anda dalam mempelajari Mean, Median, dan Modus dengan konteks budaya Semarang!
+            </div>
+
+            <div class="score-panel">
+                <div class="score-title">🎯 Ringkasan Prestasi</div>
+                <div class="score-item">
+                    <span class="score-label">Total Soal Dijawab:</span>
+                    <span class="score-value" id="totalAnswered">0 dari 18</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Total Jawaban Benar:</span>
+                    <span class="score-value score-correct" id="totalCorrect">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Total Jawaban Salah:</span>
+                    <span class="score-value score-incorrect" id="totalIncorrect">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Persentase Keseluruhan:</span>
+                    <span class="score-value score-percentage" id="totalPercentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="totalProgress" style="width: 0%;">0%</div>
+                </div>
+                <div id="achievementBadges"></div>
+                <button class="reset-btn" onclick="resetAllScores()">🔄 Reset Semua Skor</button>
+            </div>
+
+            <div class="example-box">
+                <h3>📊 Detail Skor per Materi</h3>
+                
+                <div class="data-visualization">
+                    <h4>Mean (Rata-rata) - 5 Soal:</h4>
+                    <div class="data-bar">
+                        <div class="bar-label">Benar</div>
+                        <div class="bar-fill" id="meanCorrectBar" style="width: 50px; background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);">0</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Salah</div>
+                        <div class="bar-fill" id="meanIncorrectBar" style="width: 50px; background: linear-gradient(135deg, #FF6B6B 0%, #DC143C 100%);">0</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Persentase</div>
+                        <div class="bar-fill" id="meanPercentBar" style="width: 50px; background: linear-gradient(135deg, #4682B4 0%, #2F4F4F 100%);">0%</div>
+                    </div>
+                </div>
+
+                <div class="data-visualization">
+                    <h4>Median (Nilai Tengah) - 6 Soal:</h4>
+                    <div class="data-bar">
+                        <div class="bar-label">Benar</div>
+                        <div class="bar-fill" id="medianCorrectBar" style="width: 50px; background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);">0</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Salah</div>
+                        <div class="bar-fill" id="medianIncorrectBar" style="width: 50px; background: linear-gradient(135deg, #FF6B6B 0%, #DC143C 100%);">0</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Persentase</div>
+                        <div class="bar-fill" id="medianPercentBar" style="width: 50px; background: linear-gradient(135deg, #4682B4 0%, #2F4F4F 100%);">0%</div>
+                    </div>
+                </div>
+
+                <div class="data-visualization">
+                    <h4>Modus (Nilai Sering) - 7 Soal:</h4>
+                    <div class="data-bar">
+                        <div class="bar-label">Benar</div>
+                        <div class="bar-fill" id="modusCorrectBar" style="width: 50px; background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);">0</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Salah</div>
+                        <div class="bar-fill" id="modusIncorrectBar" style="width: 50px; background: linear-gradient(135deg, #FF6B6B 0%, #DC143C 100%);">0</div>
+                    </div>
+                    <div class="data-bar">
+                        <div class="bar-label">Persentase</div>
+                        <div class="bar-fill" id="modusPercentBar" style="width: 50px; background: linear-gradient(135deg, #4682B4 0%, #2F4F4F 100%);">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-section">
+                <h3>🎖️ Sistem Penghargaan</h3>
+                <p><strong>Dapatkan lencana berdasarkan pencapaian Anda:</strong></p>
+                <ul>
+                    <li>🥉 <strong>Pemula Statistika:</strong> Jawab 5 soal dengan benar</li>
+                    <li>🥈 <strong>Ahli Etnomatematika:</strong> Jawab 10 soal dengan benar</li>
+                    <li>🥇 <strong>Master Semarang:</strong> Jawab 15 soal dengan benar</li>
+                    <li>🏆 <strong>Juara Statistika:</strong> Jawab semua 18 soal dengan benar</li>
+                    <li>⭐ <strong>Sempurna Mean:</strong> Jawab semua soal Mean dengan benar</li>
+                    <li>⭐ <strong>Sempurna Median:</strong> Jawab semua soal Median dengan benar</li>
+                    <li>⭐ <strong>Sempurna Modus:</strong> Jawab semua soal Modus dengan benar</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Global score tracking
+        let scores = {
+            mean: { correct: 0, incorrect: 0, answered: [], total: 5 },
+            median: { correct: 0, incorrect: 0, answered: [], total: 6 },
+            modus: { correct: 0, incorrect: 0, answered: [], total: 7 }
+        };
+
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Update rekapan if showing rekapan section
+            if (sectionId === 'rekapan') {
+                updateRekapanSection();
+            }
+        }
+
+        function checkAnswer(element, isCorrect, section, questionNumber) {
+            // Check if already answered
+            if (scores[section].answered.includes(questionNumber)) {
+                return;
+            }
+
+            // Remove previous classes
+            const options = element.parentNode.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Add appropriate class and update score
+            if (isCorrect) {
+                element.classList.add('correct');
+                scores[section].correct++;
+            } else {
+                element.classList.add('incorrect');
+                scores[section].incorrect++;
+                // Show correct answer
+                options.forEach(option => {
+                    if (option.onclick.toString().includes('true')) {
+                        option.classList.add('correct');
+                    }
+                });
+            }
+
+            // Mark as answered
+            scores[section].answered.push(questionNumber);
+            
+            // Update section score display
+            updateSectionScore(section);
+            
+            // Re-enable after 3 seconds
+            setTimeout(() => {
+                options.forEach(option => {
+                    option.style.pointerEvents = 'auto';
+                    option.classList.remove('correct', 'incorrect');
+                });
+            }, 3000);
+        }
+
+        function updateSectionScore(section) {
+            const answered = scores[section].answered.length;
+            const correct = scores[section].correct;
+            const incorrect = scores[section].incorrect;
+            const total = scores[section].total;
+            const percentage = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+
+            // Update counter
+            document.getElementById(`${section}Counter`).textContent = `Soal dijawab: ${answered} dari ${total}`;
+            
+            // Update progress bar
+            const progressPercent = Math.round((answered / total) * 100);
+            const progressElement = document.getElementById(`${section}Progress`);
+            progressElement.style.width = `${progressPercent}%`;
+            progressElement.textContent = `${progressPercent}%`;
+            
+            // Update scores
+            document.getElementById(`${section}Correct`).textContent = correct;
+            document.getElementById(`${section}Incorrect`).textContent = incorrect;
+            document.getElementById(`${section}Percentage`).textContent = `${percentage}%`;
+        }
+
+        function resetQuizSection(section) {
+            scores[section] = { correct: 0, incorrect: 0, answered: [], total: scores[section].total };
+            updateSectionScore(section);
+            
+            // Reset visual state of all quiz options in this section
+            const sectionElement = document.getElementById(section);
+            const options = sectionElement.querySelectorAll('.quiz-option');
+            options.forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+        }
+
+        function updateRekapanSection() {
+            const totalAnswered = scores.mean.answered.length + scores.median.answered.length + scores.modus.answered.length;
+            const totalCorrect = scores.mean.correct + scores.median.correct + scores.modus.correct;
+            const totalIncorrect = scores.mean.incorrect + scores.median.incorrect + scores.modus.incorrect;
+            const totalQuestions = 18;
+            const totalPercentage = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+
+            // Update overall stats
+            document.getElementById('totalAnswered').textContent = `${totalAnswered} dari ${totalQuestions}`;
+            document.getElementById('totalCorrect').textContent = totalCorrect;
+            document.getElementById('totalIncorrect').textContent = totalIncorrect;
+            document.getElementById('totalPercentage').textContent = `${totalPercentage}%`;
+            
+            // Update overall progress
+            const overallProgress = Math.round((totalAnswered / totalQuestions) * 100);
+            const totalProgressElement = document.getElementById('totalProgress');
+            totalProgressElement.style.width = `${overallProgress}%`;
+            totalProgressElement.textContent = `${overallProgress}%`;
+
+            // Update section bars
+            updateSectionBars();
+            
+            // Update achievements
+            updateAchievements(totalCorrect);
+        }
+
+        function updateSectionBars() {
+            // Mean bars
+            const meanPercentage = scores.mean.answered.length > 0 ? Math.round((scores.mean.correct / scores.mean.answered.length) * 100) : 0;
+            document.getElementById('meanCorrectBar').textContent = scores.mean.correct;
+            document.getElementById('meanCorrectBar').style.width = `${Math.max(50, scores.mean.correct * 30)}px`;
+            document.getElementById('meanIncorrectBar').textContent = scores.mean.incorrect;
+            document.getElementById('meanIncorrectBar').style.width = `${Math.max(50, scores.mean.incorrect * 30)}px`;
+            document.getElementById('meanPercentBar').textContent = `${meanPercentage}%`;
+            document.getElementById('meanPercentBar').style.width = `${Math.max(50, meanPercentage * 2)}px`;
+
+            // Median bars
+            const medianPercentage = scores.median.answered.length > 0 ? Math.round((scores.median.correct / scores.median.answered.length) * 100) : 0;
+            document.getElementById('medianCorrectBar').textContent = scores.median.correct;
+            document.getElementById('medianCorrectBar').style.width = `${Math.max(50, scores.median.correct * 30)}px`;
+            document.getElementById('medianIncorrectBar').textContent = scores.median.incorrect;
+            document.getElementById('medianIncorrectBar').style.width = `${Math.max(50, scores.median.incorrect * 30)}px`;
+            document.getElementById('medianPercentBar').textContent = `${medianPercentage}%`;
+            document.getElementById('medianPercentBar').style.width = `${Math.max(50, medianPercentage * 2)}px`;
+
+            // Modus bars
+            const modusPercentage = scores.modus.answered.length > 0 ? Math.round((scores.modus.correct / scores.modus.answered.length) * 100) : 0;
+            document.getElementById('modusCorrectBar').textContent = scores.modus.correct;
+            document.getElementById('modusCorrectBar').style.width = `${Math.max(50, scores.modus.correct * 30)}px`;
+            document.getElementById('modusIncorrectBar').textContent = scores.modus.incorrect;
+            document.getElementById('modusIncorrectBar').style.width = `${Math.max(50, scores.modus.incorrect * 30)}px`;
+            document.getElementById('modusPercentBar').textContent = `${modusPercentage}%`;
+            document.getElementById('modusPercentBar').style.width = `${Math.max(50, modusPercentage * 2)}px`;
+        }
+
+        function updateAchievements(totalCorrect) {
+            const badgeContainer = document.getElementById('achievementBadges');
+            badgeContainer.innerHTML = '';
+
+            const achievements = [];
+
+            // General achievements
+            if (totalCorrect >= 5) achievements.push('🥉 Pemula Statistika');
+            if (totalCorrect >= 10) achievements.push('🥈 Ahli Etnomatematika');
+            if (totalCorrect >= 15) achievements.push('🥇 Master Semarang');
+            if (totalCorrect >= 18) achievements.push('🏆 Juara Statistika');
+
+            // Perfect section achievements
+            if (scores.mean.correct === 5 && scores.mean.answered.length === 5) {
+                achievements.push('⭐ Sempurna Mean');
+            }
+            if (scores.median.correct === 6 && scores.median.answered.length === 6) {
+                achievements.push('⭐ Sempurna Median');
+            }
+            if (scores.modus.correct === 7 && scores.modus.answered.length === 7) {
+                achievements.push('⭐ Sempurna Modus');
+            }
+
+            // Display achievements
+            achievements.forEach(achievement => {
+                const badge = document.createElement('span');
+                badge.className = 'achievement-badge';
+                badge.textContent = achievement;
+                badgeContainer.appendChild(badge);
+            });
+
+            if (achievements.length === 0) {
+                badgeContainer.innerHTML = '<p style="color: #666; font-style: italic;">Belum ada lencana. Jawab soal untuk mendapatkan penghargaan!</p>';
+            }
+        }
+
+        function resetAllScores() {
+            scores = {
+                mean: { correct: 0, incorrect: 0, answered: [], total: 5 },
+                median: { correct: 0, incorrect: 0, answered: [], total: 6 },
+                modus: { correct: 0, incorrect: 0, answered: [], total: 7 }
+            };
+
+            // Reset all section displays
+            updateSectionScore('mean');
+            updateSectionScore('median');
+            updateSectionScore('modus');
+            updateRekapanSection();
+
+            // Reset visual state of all quiz options
+            const allOptions = document.querySelectorAll('.quiz-option');
+            allOptions.forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                option.style.pointerEvents = 'auto';
+            });
+        }
+
+        function calculateAll() {
+            const input = document.getElementById('dataInput').value;
+            if (!input.trim()) {
+                alert('Silakan masukkan data terlebih dahulu!');
+                return;
+            }
+
+            try {
+                // Parse data
+                const data = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+                
+                if (data.length === 0) {
+                    alert('Data tidak valid! Pastikan menggunakan angka dan dipisahkan dengan koma.');
+                    return;
+                }
+
+                // Calculate mean
+                const mean = data.reduce((sum, num) => sum + num, 0) / data.length;
+
+                // Calculate median
+                const sortedData = [...data].sort((a, b) => a - b);
+                let median;
+                if (sortedData.length % 2 === 0) {
+                    median = (sortedData[sortedData.length / 2 - 1] + sortedData[sortedData.length / 2]) / 2;
+                } else {
+                    median = sortedData[Math.floor(sortedData.length / 2)];
+                }
+
+                // Calculate modus
+                const frequency = {};
+                data.forEach(num => {
+                    frequency[num] = (frequency[num] || 0) + 1;
+                });
+                
+                const maxFreq = Math.max(...Object.values(frequency));
+                const modus = Object.keys(frequency).filter(key => frequency[key] === maxFreq);
+                
+                let modusText;
+                if (maxFreq === 1) {
+                    modusText = 'Tidak ada modus';
+                } else if (modus.length === 1) {
+                    modusText = `Modus: ${modus[0]}`;
+                } else {
+                    modusText = `Multimodus: ${modus.join(', ')}`;
+                }
+
+                // Display results
+                document.getElementById('meanResult').innerHTML = `📊 Mean (Rata-rata): ${mean.toFixed(2)}`;
+                document.getElementById('medianResult').innerHTML = `📈 Median (Nilai Tengah): ${median}`;
+                document.getElementById('modusResult').innerHTML = `📋 ${modusText}`;
+                
+                // Create visualization
+                createVisualization(data, sortedData);
+                
+                document.getElementById('calculatorResults').style.display = 'block';
+                
+            } catch (error) {
+                alert('Terjadi kesalahan dalam perhitungan. Periksa format data Anda.');
+            }
+        }
+
+        function createVisualization(originalData, sortedData) {
+            const container = document.getElementById('dataVisualization');
+            container.innerHTML = '<h4>📊 Visualisasi Data:</h4>';
+            
+            // Show original data
+            const originalDiv = document.createElement('div');
+            originalDiv.innerHTML = `<strong>Data Asli:</strong> ${originalData.join(', ')}`;
+            container.appendChild(originalDiv);
+            
+            // Show sorted data
+            const sortedDiv = document.createElement('div');
+            sortedDiv.innerHTML = `<strong>Data Terurut:</strong> ${sortedData.join(', ')}`;
+            sortedDiv.style.marginTop = '10px';
+            container.appendChild(sortedDiv);
+            
+            // Create frequency chart
+            const frequency = {};
+            originalData.forEach(num => {
+                frequency[num] = (frequency[num] || 0) + 1;
+            });
+            
+            const freqDiv = document.createElement('div');
+            freqDiv.innerHTML = '<strong>Frekuensi:</strong>';
+            freqDiv.style.marginTop = '15px';
+            
+            Object.keys(frequency).sort((a, b) => a - b).forEach(key => {
+                const bar = document.createElement('div');
+                bar.className = 'data-bar';
+                bar.innerHTML = `
+                    <div class="bar-label">${key}</div>
+                    <div class="bar-fill" style="width: ${frequency[key] * 30 + 50}px;">${frequency[key]} kali</div>
+                `;
+                freqDiv.appendChild(bar);
+            });
+            
+            container.appendChild(freqDiv);
+        }
+
+        function clearResults() {
+            document.getElementById('dataInput').value = '';
+            document.getElementById('calculatorResults').style.display = 'none';
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98f762c117159ccb',t:'MTc2MDYxNTkyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
